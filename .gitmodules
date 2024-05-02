@@ -1,0 +1,3 @@
+[submodule "myDoorCenter"]
+	path = myDoorCenter
+	url = git@github.com:imadismad/myDoorCenter.git

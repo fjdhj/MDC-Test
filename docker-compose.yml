@@ -1,0 +1,25 @@
+services:
+ web:
+  image: nginx:latest
+  entrypoint: /docker-entrypoint.sh nginx-debug -g 'daemon off;'
+  ports:
+   - "80:80"
+  volumes:
+   - ./myDoorCenter:/var/wwwroot
+   - ./default.conf:/etc/nginx/conf.d/default.conf
+  links:
+   - php
+   - db
+
+ php:
+  build: phpDocker
+  volumes:
+   - ./myDoorCenter:/var/wwwroot
+   
+ db:
+  image: mysql:8.0-debian
+  environment:
+   MYSQL_ROOT_PASSWORD: rootPassword
+  ports:
+   - 4306:3306
+   - 43060:33060
